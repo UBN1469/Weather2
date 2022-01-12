@@ -5,7 +5,8 @@
       <map>
         <entry key="..\:/Users/Alexandr/GEEKBRAINS/2_quarter/Android_1/practice/Weather2/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Alexandr/GEEKBRAINS/2_quarter/Android_1/practice/Weather2/app/src/main/res/layout/fragment_city.xml" value="0.2604166666666667" />
-        <entry key="..\:/Users/Alexandr/GEEKBRAINS/2_quarter/Android_1/practice/Weather2/app/src/main/res/layout/fragment_main.xml" value="0.6" />
+        <entry key="..\:/Users/Alexandr/GEEKBRAINS/2_quarter/Android_1/practice/Weather2/app/src/main/res/layout/fragment_main.xml" value="0.4" />
+        <entry key="..\:/Users/Alexandr/GEEKBRAINS/2_quarter/Android_1/practice/Weather2/app/src/main/res/layout/week_weather_item.xml" value="0.5121477162293488" />
         <entry key="..\:/Users/Alexandr/GEEKBRAINS/2_quarter/Android_1/practice/Weather2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.28615384615384615" />
       </map>
     </option>
@@ -15,5 +16,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressABINotification">
+    <option name="modulesWithSuppressedNotConfigured">
+      <set>
+        <option value="Weather2.app" />
+      </set>
+    </option>
   </component>
 </project>
