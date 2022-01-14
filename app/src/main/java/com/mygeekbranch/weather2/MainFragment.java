@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +33,6 @@ public class MainFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main, container, false);
 
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -43,6 +43,12 @@ public class MainFragment extends Fragment {
         weekRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         weekRecyclerView.setLayoutManager(layoutManager);
+
+        // Декорация карточек (полоска между карточками)
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(),LinearLayoutManager.VERTICAL);
+        itemDecoration.setDrawable(getResources().getDrawable(R.drawable.item_seporator));
+        weekRecyclerView.addItemDecoration(itemDecoration);
+
 
         adapter = new WeekAdapter(weekList);
         weekRecyclerView.setAdapter(adapter);
@@ -87,4 +93,6 @@ public class MainFragment extends Fragment {
        weekList.add(new WeekWeatherModel("ВС","+20"));
 
     }
+
+
 }
