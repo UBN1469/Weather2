@@ -13,10 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class CityFragment extends Fragment {
     RecyclerView cityRecyclerView;
     CityAdapter cityAdapter;
+    List <CityModel> cityModels;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,15 +33,24 @@ public class CityFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initLIstCity();
         cityRecyclerView = view.findViewById(R.id.city_recyclerView);
         cityRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         cityRecyclerView.setLayoutManager(layoutManager);
 
-        cityAdapter =new CityAdapter();
+        cityAdapter =new CityAdapter(cityModels);
         cityRecyclerView.setAdapter(cityAdapter);
 
+    }
 
-
+    public  void initLIstCity(){
+        cityModels = new ArrayList<>();
+        cityModels.add(new CityModel("Moscow"));
+        cityModels.add(new CityModel("New York"));
+        cityModels.add(new CityModel("Denwer"));
+        cityModels.add(new CityModel("Cheboksary"));
+        cityModels.add(new CityModel("Kazan"));
+        cityModels.add(new CityModel("Omsk"));
     }
 }

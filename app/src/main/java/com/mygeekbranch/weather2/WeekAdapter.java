@@ -34,7 +34,7 @@ public class WeekAdapter extends RecyclerView.Adapter<WeekAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 7;
+        return list.size();
     }
 
     public class ViewHolder extends  RecyclerView.ViewHolder{

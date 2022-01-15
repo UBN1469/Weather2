@@ -8,11 +8,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
+import java.util.List;
 
+public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
+    private List<CityModel> modelList;
+
+    public CityAdapter(List<CityModel> modelList) {
+        this.modelList = modelList;
+    }
 
     @NonNull
-    @Override
+        @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.city_item,parent,false);
         return new ViewHolder(view);
@@ -20,13 +26,13 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.city.setText("Привет");
+        holder.city.setText(modelList.get(position).getCity());
 
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return modelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
