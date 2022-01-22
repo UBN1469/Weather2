@@ -1,6 +1,6 @@
 package com.mygeekbranch.weather2;
 
-import android.os.Bundle;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,10 @@ public class CityFragment extends Fragment {
     private RecyclerView cityRecyclerView;
     private CityAdapter cityAdapter;
     private List <CityModel> cityModels;
+
+
+
+
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,6 +40,8 @@ public class CityFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
         initLIstCity();
         buildRecyclerVew(view);
         EditText setCityEditText = getView().findViewById(R.id.set_city_edit_text);
@@ -44,10 +52,35 @@ public class CityFragment extends Fragment {
                 String city = setCityEditText.getText().toString();
                 cityModels.add(new CityModel(city));
                 cityAdapter.notifyDataSetChanged();
+//
+//                Bundle bundle = new Bundle();
+//                bundle.putString("city","Kiev");
+//                MainFragment mainFragment =new MainFragment();
+//                mainFragment.setArguments(bundle);
+//
+//                getParentFragmentManager().beginTransaction()
+//                        .replace(R.id.main_container , MainFragment.instanceOf())
+//                        .commit();
+
+               
+
+
             }
         });
 
 
+    }
+
+    public  void initFragmentMain(String city){
+
+        Bundle bundle = new Bundle();
+        bundle.putString("city",city);
+        MainFragment mainFragment =new MainFragment();
+        mainFragment.setArguments(bundle);
+
+         getParentFragmentManager().beginTransaction()
+                .replace(R.id.main_container , mainFragment)
+                .commit();
     }
 
     private   void initLIstCity(){
@@ -63,7 +96,7 @@ public class CityFragment extends Fragment {
         cityRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         cityRecyclerView.setLayoutManager(layoutManager);
-        cityAdapter =new CityAdapter(cityModels);
+        cityAdapter =new CityAdapter(cityModels ,this);
         cityRecyclerView.setAdapter(cityAdapter);
     }
 

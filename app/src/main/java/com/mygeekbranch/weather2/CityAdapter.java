@@ -1,5 +1,7 @@
 package com.mygeekbranch.weather2;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +15,11 @@ import java.util.List;
 
 public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
     private List<CityModel> modelList;
+    CityFragment cityFragment;
 
-    public CityAdapter(List<CityModel> modelList) {
+    public CityAdapter(List<CityModel> modelList, CityFragment cityFragment) {
         this.modelList = modelList;
+        this.cityFragment =cityFragment;
     }
 
     @NonNull
@@ -32,10 +36,15 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
                 Toast.makeText(v.getContext(), holder.city.getText(),Toast.LENGTH_SHORT).show();
+                cityFragment.initFragmentMain(holder.city.getText().toString());
+
             }
+
         });
 
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -49,4 +58,6 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
             city= itemView.findViewById(R.id.city_item_textView);
         }
     }
+
+
 }

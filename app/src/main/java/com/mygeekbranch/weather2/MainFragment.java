@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,8 @@ public class MainFragment extends Fragment {
     RecyclerView weekRecyclerView;
     List <WeekWeatherModel> weekList;
     WeekAdapter adapter;
+
+
 
 
 
@@ -39,6 +42,17 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+        TextView cityTextView = getView().findViewById(R.id.city_textView);
+        if (getArguments() != null && getArguments().containsKey("city")){
+            String city =getArguments().getString("city", "Kanash");
+
+            cityTextView.setText(city);
+        }
+
+
+
+
+
         initWeekList();
         weekRecyclerView = view.findViewById(R.id.week_recyclerView);
         weekRecyclerView.setHasFixedSize(true);
@@ -49,10 +63,12 @@ public class MainFragment extends Fragment {
         DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(),LinearLayoutManager.VERTICAL);
         itemDecoration.setDrawable(getResources().getDrawable(R.drawable.item_seporator));
         weekRecyclerView.addItemDecoration(itemDecoration);
-
-
         adapter = new WeekAdapter(weekList);
         weekRecyclerView.setAdapter(adapter);
+
+
+
+
 
 
 
@@ -61,9 +77,8 @@ public class MainFragment extends Fragment {
         city_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction()
+                getParentFragmentManager().beginTransaction()
                         .replace(R.id.main_container, new CityFragment() )
-                        .addToBackStack(null)
                         .commit();
 
 
@@ -74,7 +89,7 @@ public class MainFragment extends Fragment {
         setting_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction()
+                getParentFragmentManager().beginTransaction()
                         .replace(R.id.main_container, new SettingFragment() )
                         .addToBackStack(null)
                         .commit();
