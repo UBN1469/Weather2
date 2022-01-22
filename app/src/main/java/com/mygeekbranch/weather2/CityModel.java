@@ -11,7 +11,4 @@ public class CityModel {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
 }

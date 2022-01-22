@@ -12,15 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class CityFragment extends Fragment {
-    RecyclerView cityRecyclerView;
-    CityAdapter cityAdapter;
-    List <CityModel> cityModels;
+    private RecyclerView cityRecyclerView;
+    private CityAdapter cityAdapter;
+    private List <CityModel> cityModels;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,23 +35,37 @@ public class CityFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         initLIstCity();
-        cityRecyclerView = view.findViewById(R.id.city_recyclerView);
-        cityRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        cityRecyclerView.setLayoutManager(layoutManager);
+        buildRecyclerVew(view);
+        EditText setCityEditText = getView().findViewById(R.id.set_city_edit_text);
+        Button setCityButton = getView().findViewById(R.id.set_city_button);
+        setCityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String city = setCityEditText.getText().toString();
+                cityModels.add(new CityModel(city));
+                cityAdapter.notifyDataSetChanged();
+            }
+        });
 
-        cityAdapter =new CityAdapter(cityModels);
-        cityRecyclerView.setAdapter(cityAdapter);
 
     }
 
-    public  void initLIstCity(){
+    private   void initLIstCity(){
         cityModels = new ArrayList<>();
         cityModels.add(new CityModel("Moscow"));
         cityModels.add(new CityModel("New York"));
         cityModels.add(new CityModel("Denwer"));
-        cityModels.add(new CityModel("Cheboksary"));
-        cityModels.add(new CityModel("Kazan"));
-        cityModels.add(new CityModel("Omsk"));
+
     }
+
+    private   void buildRecyclerVew(View view){
+        cityRecyclerView = view.findViewById(R.id.city_recyclerView);
+        cityRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        cityRecyclerView.setLayoutManager(layoutManager);
+        cityAdapter =new CityAdapter(cityModels);
+        cityRecyclerView.setAdapter(cityAdapter);
+    }
+
+
 }
